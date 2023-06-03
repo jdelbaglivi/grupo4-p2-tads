@@ -3,17 +3,17 @@ package uy.edu.um.prog2.adt;
 public class BinarySearchTreeImpl<K extends Comparable<K>, T> implements BinarySearchTree<K, T> {
 
     @Override
-    public boolean find(Object element) {
+    public boolean find(K key) {
         return false;
     }
 
     @Override
-    public void insert(Object element) {
+    public void insert(K key, T value) {
 
     }
 
     @Override
-    public void delete(Object element) {
+    public void delete(K key) {
 
     }
 
@@ -27,3 +27,4 @@ public class BinarySearchTreeImpl<K extends Comparable<K>, T> implements BinaryS
         return null;
     }
 }
+

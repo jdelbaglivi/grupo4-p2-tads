@@ -2,11 +2,11 @@ package uy.edu.um.prog2.adt;
 
 public interface BinarySearchTree<K extends Comparable<K>, T> {
 
-    boolean find(T element);
+    boolean find(K key);
 
-    void insert(T element);
+    void insert(K key, T value);
 
-    void delete(T element);
+    void delete(K key);
 
     T findMax();
 
