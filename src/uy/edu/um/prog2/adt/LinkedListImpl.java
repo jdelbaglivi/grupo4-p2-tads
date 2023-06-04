@@ -1,8 +1,15 @@
 package uy.edu.um.prog2.adt;
 
 public class LinkedListImpl implements LinkedList {
+    private Nodo head;
+
     @Override
     public void add(Object value) {
+        if (value!= null){
+            Node<T> valueToAdd = new Node<>
+        }
+
+
 
     }
 
