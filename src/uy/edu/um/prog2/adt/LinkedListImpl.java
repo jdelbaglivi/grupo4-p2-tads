@@ -5,8 +5,7 @@ public class LinkedListImpl implements LinkedList {
 
     @Override
     public void add(Object value) {
-        if (value!= null){
-            Node<T> valueToAdd = new Node<>
+        
         }
 
 
