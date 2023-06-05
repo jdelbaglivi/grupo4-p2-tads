@@ -18,18 +18,18 @@ public class HeapImplTest {
     public void testInsertAndSize() {
         assertEquals(0, heap.size());
 
-        heap.insert(5, "Value 5");
-        heap.insert(3, "Value 3");
-        heap.insert(7, "Value 7");
+        heap.insert(51, "Apio");
+        heap.insert(98, "Cebolla");
+        heap.insert(66, "Tomate");
 
         assertEquals(3, heap.size());
     }
 
     @Test
-    public void testDelete() {
-        heap.insert(5, "Value 5");
-        heap.insert(3, "Value 3");
-        heap.insert(7, "Value 7");
+    public void testDeleteAndMax() {
+        heap.insert(51, "Apio");
+        heap.insert(98, "Cebolla");
+        heap.insert(66, "Tomate");
 
         try{
             heap.delete();
@@ -38,6 +38,7 @@ public class HeapImplTest {
         }
 
         assertEquals(2, heap.size());
+        assertEquals("Tomate", heap.getMaxValue());
     }
 
     @Test()
@@ -52,10 +53,10 @@ public class HeapImplTest {
 
     @Test
     public void testGetMaxValue() {
-        heap.insert(5, "Value 5");
-        heap.insert(3, "Value 3");
-        heap.insert(7, "Value 7");
+        heap.insert(51, "Apio");
+        heap.insert(98, "Cebolla");
+        heap.insert(66, "Tomate");
 
-        assertEquals("Value 7", heap.getMaxValue());
+        assertEquals("Cebolla", heap.getMaxValue());
     }
 }
