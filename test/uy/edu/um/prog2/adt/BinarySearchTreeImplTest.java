@@ -1,15 +1,20 @@
 package uy.edu.um.prog2.adt;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
 
-class BinarySearchTreeImplTest {
+public class BinarySearchTreeImplTest {
+
+    private BinarySearchTree<Integer, String> tree;
+    @Before
+    public void setUp() {
+        tree = new BinarySearchTreeImpl<>();
+    }
 
     @Test
-    void testInsertAndFind() {
-        BinarySearchTree<Integer, String> tree = new BinarySearchTreeImpl<>();
-
+    public void testInsertAndFind() {
         tree.insert(4, "Papas");
         tree.insert(35, "Boniatos");
         tree.insert(23, "Zanahorias");
@@ -23,9 +28,7 @@ class BinarySearchTreeImplTest {
     }
 
     @Test
-    void testDelete() {
-        BinarySearchTree<Integer, String> tree = new BinarySearchTreeImpl<>();
-
+    public void testDelete() {
         tree.insert(4, "Papas");
         tree.insert(35, "Boniatos");
         tree.insert(23, "Zanahorias");
@@ -50,9 +53,7 @@ class BinarySearchTreeImplTest {
     }
 
     @Test
-    void testFindMin() {
-        BinarySearchTree<Integer, String> tree = new BinarySearchTreeImpl<>();
-
+    public void testFindMin() {
         tree.insert(4, "Papas");
         tree.insert(35, "Boniatos");
         tree.insert(23, "Zanahorias");
@@ -62,9 +63,7 @@ class BinarySearchTreeImplTest {
     }
 
     @Test
-    void testFindMax() {
-        BinarySearchTree<Integer, String> tree = new BinarySearchTreeImpl<>();
-
+    public void testFindMax() {
         tree.insert(4, "Papas");
         tree.insert(35, "Boniatos");
         tree.insert(23, "Zanahorias");

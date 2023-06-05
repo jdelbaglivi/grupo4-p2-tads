@@ -5,6 +5,10 @@ public class BinarySearchTreeImpl<K extends Comparable<K>, T> implements BinaryS
 
     private BinarySearchTreeNode<K, T> root;
 
+    public BinarySearchTreeImpl() {
+        root = null;
+    }
+
     @Override
     public boolean find(K key) {
         return findRecursive(root, key);
@@ -78,6 +82,7 @@ public class BinarySearchTreeImpl<K extends Comparable<K>, T> implements BinaryS
 
         return node;
     }
+
     @Override
     public T findMin() {
         if (root == null) {
