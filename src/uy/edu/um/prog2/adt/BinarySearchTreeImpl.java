@@ -1,6 +1,8 @@
 package uy.edu.um.prog2.adt;
 
 
+import uy.edu.um.prog2.adt.exceptions.EmptyTreeException;
+
 public class BinarySearchTreeImpl<K extends Comparable<K>, T> implements BinarySearchTree<K, T> {
 
     private BinarySearchTreeNode<K, T> root;
@@ -50,7 +52,9 @@ public class BinarySearchTreeImpl<K extends Comparable<K>, T> implements BinaryS
     }
 
     @Override
-    public void delete(K key) {
+    public void delete(K key) throws EmptyTreeException {
+        if (root == null)
+            throw new EmptyTreeException();
         root = deleteRecursive(root, key);
     }
 

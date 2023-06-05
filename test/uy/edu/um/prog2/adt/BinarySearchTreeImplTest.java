@@ -2,12 +2,14 @@ package uy.edu.um.prog2.adt;
 
 import org.junit.Before;
 import org.junit.Test;
+import uy.edu.um.prog2.adt.exceptions.EmptyTreeException;
 
 import static org.junit.Assert.*;
 
 public class BinarySearchTreeImplTest {
 
     private BinarySearchTree<Integer, String> tree;
+
     @Before
     public void setUp() {
         tree = new BinarySearchTreeImpl<>();
@@ -39,17 +41,31 @@ public class BinarySearchTreeImplTest {
         assertTrue(tree.find(23));
         assertTrue(tree.find(45));
 
-        tree.delete(4);
-        assertFalse(tree.find(4));
+        try {
+            tree.delete(4);
+            assertFalse(tree.find(4));
 
-        tree.delete(35);
-        assertFalse(tree.find(35));
+            tree.delete(35);
+            assertFalse(tree.find(35));
 
-        tree.delete(23);
-        assertFalse(tree.find(23));
+            tree.delete(23);
+            assertFalse(tree.find(23));
 
-        tree.delete(45);
-        assertFalse(tree.find(45));
+            tree.delete(45);
+            assertFalse(tree.find(45));
+        } catch (EmptyTreeException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testDeleteEmpty() {
+        try {
+            tree.delete(77);
+            fail();
+        } catch (EmptyTreeException e) {
+            assertTrue(true);
+        }
     }
 
     @Test
