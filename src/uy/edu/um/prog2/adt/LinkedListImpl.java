@@ -6,7 +6,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
     private Node<T> first;
     private int size;
 
-    private Node<T> last;
+
     public LinkedListImpl(){
         this.first= null;
         this.size = 0;
