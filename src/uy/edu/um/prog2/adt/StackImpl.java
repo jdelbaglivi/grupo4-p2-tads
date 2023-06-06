@@ -21,7 +21,7 @@ public class StackImpl<T> implements Stack<T> {
 
             Node<T> newNode = new Node<>(value);
 
-            if (this.first == null) { // si la lista es vacia
+            if (this.first == null) { // si la pila es vacia
 
                 this.first = newNode;
                 this.last = newNode;

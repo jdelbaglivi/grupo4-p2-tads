@@ -19,7 +19,7 @@ public class HeapImpl<K extends Comparable<K>, T> implements Heap<K, T> {
     public void insert(K key, T value) {
         HeapNode<K, T> node = new HeapNode<>(key, value);
         if (size == heap.length)
-            increaceSize();
+            increaseSize();
         heap[size] = node;
         moveNodeUp(size);
         size++;
@@ -41,7 +41,7 @@ public class HeapImpl<K extends Comparable<K>, T> implements Heap<K, T> {
         heap[j] = temp;
     }
 
-    private void increaceSize() {
+    private void increaseSize() {
         HeapNode<K, T>[] newHeap = new HeapNode[size * 2];
         for (int i = 0; i < size; i++) {
             newHeap[i] = heap[i];

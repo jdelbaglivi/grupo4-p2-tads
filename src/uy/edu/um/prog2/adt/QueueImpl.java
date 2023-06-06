@@ -41,7 +41,7 @@ public class QueueImpl<T> implements Queue<T> {
         T valueToRemove = this.last.getValue();
 
         if (this.first == this.last) {
-            // Si la pila solo contiene un elemento, vaciamos la pila
+            // Si la cola solo contiene un elemento, vaciamos la pila
             this.first = null;
             this.last = null;
         } else {
