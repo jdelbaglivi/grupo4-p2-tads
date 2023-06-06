@@ -2,7 +2,6 @@ package uy.edu.um.prog2.adt;
 
 import uy.edu.um.prog2.adt.exceptions.DatosIncorrectos;
 import uy.edu.um.prog2.adt.exceptions.EmptyQueueException;
-import uy.edu.um.prog2.adt.exceptions.EmptyStackException;
 
 public class QueueImpl<T> implements Queue<T> {
     private Node<T> first;
@@ -12,7 +11,7 @@ public class QueueImpl<T> implements Queue<T> {
     public QueueImpl() {
         this.first = null;
         this.size = 0;
-        this.last= null;
+        this.last = null;
     }
 
     @Override
@@ -31,10 +30,6 @@ public class QueueImpl<T> implements Queue<T> {
 
         this.size++;
     }
-
-
-
-
 
 
     @Override
@@ -66,7 +61,6 @@ public class QueueImpl<T> implements Queue<T> {
     }
 
 
-
     @Override
     public boolean contains(T value) {
         boolean contains = false;
@@ -74,7 +68,7 @@ public class QueueImpl<T> implements Queue<T> {
 
         while (aux != null) {
             if (aux.getValue().equals(value)) {
-                contains= true;
+                contains = true;
                 break;
             }
             aux = aux.getNext();
@@ -92,15 +86,11 @@ public class QueueImpl<T> implements Queue<T> {
         if (position < 0 || position >= this.size) {
             throw new DatosIncorrectos();
         }
-
         Node<T> aux = this.first;
-
         // Se busca el nodo que corresponde con la posición
         for (int i = 0; i < position; i++) {
             aux = aux.getNext();
         }
-
-
         // Se retorna el valor del nodo en la posición especificada
         return aux.getValue();
     }
