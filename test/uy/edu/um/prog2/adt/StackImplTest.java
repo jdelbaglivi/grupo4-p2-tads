@@ -1,18 +1,27 @@
 package uy.edu.um.prog2.adt;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import uy.edu.um.prog2.adt.exceptions.DatosIncorrectos;
 import uy.edu.um.prog2.adt.exceptions.EmptyStackException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class StackImplTest {
-    StackImpl stack = new StackImpl();
+
+public class StackImplTest {
+    private StackImpl<String> stack;
+    private StackImpl<Integer> stackInt;
+
+
+    @Before
+    public void setUp() {
+        stack = new StackImpl<>();
+        stackInt = new StackImpl<>();
+    }
 
 
     @Test
-    void push() {
+    public void push() {
         stack.push("hola");
         stack.push("mundo");
         stack.push("!");
@@ -20,82 +29,78 @@ class StackImplTest {
         try {
             assertEquals("!", stack.get(2));
         } catch (DatosIncorrectos e) {
-            throw new RuntimeException(e);
+            fail();
         }
     }
 
     @Test
-    void pop() {
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
+    public void pop() {
+        stackInt.push(1);
+        stackInt.push(2);
+        stackInt.push(3);
 
         // Remove value 2
 
         try {
-            assertEquals(3,stack.pop());
+            assertEquals((Integer) 3, stackInt.pop());
         } catch (EmptyStackException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(2, stack.size());
-        Assert.assertTrue(stack.contains(1));
-        Assert.assertFalse(stack.contains(3));
-        Assert.assertTrue(stack.contains(2));
-
+        assertEquals(2, stackInt.size());
+        assertTrue(stackInt.contains(1));
+        assertFalse(stackInt.contains(3));
+        assertTrue(stackInt.contains(2));
 
 
         try {
-            assertEquals(2,stack.pop());
+            assertEquals((Integer) 2, stackInt.pop());
         } catch (EmptyStackException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(1, stack.size());
-        Assert.assertFalse(stack.contains(2));
-        Assert.assertFalse(stack.contains(3));
-        Assert.assertTrue(stack.contains(1));
-
+        assertEquals(1, stackInt.size());
+        assertFalse(stackInt.contains(2));
+        assertFalse(stackInt.contains(3));
+        assertTrue(stackInt.contains(1));
 
         // Remove value 3 (last element)
         try {
-            assertEquals(1,stack.pop());
+            assertEquals((Integer) 1, stackInt.pop());
         } catch (EmptyStackException e) {
             throw new RuntimeException(e);
         }
-        Assert.assertEquals(0, stack.size());
-        Assert.assertFalse(stack.contains(2));
-        Assert.assertFalse(stack.contains(3));
-        Assert.assertFalse(stack.contains(1));
-
-
+        assertEquals(0, stackInt.size());
+        assertFalse(stackInt.contains(2));
+        assertFalse(stackInt.contains(3));
+        assertFalse(stackInt.contains(1));
     }
 
     @Test
-    void peek() {
-        assertEquals(null, stack.peek());
+    public void peek() {
+        assertNull(stack.peek());
 
         // Caso 2: Lista con un elemento, se espera que el resultado sea el valor del elemento
-        stack.push(5);
+        stackInt.push(5);
 
         //assertEquals(5, stack.peek());
 
         // Caso 3: Lista con varios elementos, se espera que el resultado sea el valor del último elemento
-        stack.push(10);
-        stack.push(15);
-        assertEquals(15, stack.peek());
+        stackInt.push(10);
+        stackInt.push(15);
+        assertEquals((Integer) 15, stackInt.peek());
 
         // Verificar que el tamaño de la lista no ha cambiado
-        assertEquals(3, stack.size());
+        assertEquals( 3, stackInt.size());
     }
 
     @Test
-    void size() {
+    public void size() {
         assertEquals(0, stack.size());
         stack.push("hola");
         assertEquals(1, stack.size());
     }
 
     @Test
-    void get() {
+    public void get() {
         stack.push("hola");
         stack.push("mundo");
         try {
@@ -106,7 +111,7 @@ class StackImplTest {
     }
 
     @Test
-    void contains() {
+    public void contains() {
         stack.push("hola");
         assertTrue(stack.contains("hola"));
     }

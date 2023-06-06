@@ -1,23 +1,32 @@
 package uy.edu.um.prog2.adt;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import uy.edu.um.prog2.adt.exceptions.DatosIncorrectos;
 import uy.edu.um.prog2.adt.exceptions.EmptyQueueException;
-import uy.edu.um.prog2.adt.exceptions.EmptyStackException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class QueueImplTest {
-    QueueImpl queue = new QueueImpl();
+
+public class QueueImplTest {
+    private QueueImpl<String> queueString;
+    private QueueImpl<Integer> queueInt;
+
+
+    @Before
+    public void setUp() {
+        queueString = new QueueImpl<>();
+        queueInt = new QueueImpl<>();
+    }
 
     @Test
-    void enqueue() {
-        queue.enqueue("hola");
-        queue.enqueue("mundo");
-        queue.enqueue("!");
+    public void enqueue() {
+        queueString.enqueue("hola");
+        queueString.enqueue("mundo");
+        queueString.enqueue("!");
         try {
-            assertEquals("hola", queue.get(2));
+            assertEquals("hola", queueString.get(2));
         } catch (DatosIncorrectos e) {
             throw new RuntimeException(e);
         }
@@ -25,69 +34,68 @@ class QueueImplTest {
 
 
     @Test
-    void dequeue() {
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
+    public void dequeue() {
+        queueInt.enqueue(1);
+        queueInt.enqueue(2);
+        queueInt.enqueue(3);
 
         // Remove value 2
 
         try {
-            assertEquals(1,queue.dequeue());
+            assertEquals((Integer) 1, queueInt.dequeue());
         } catch (EmptyQueueException e) {
-            throw new RuntimeException(e);
+            fail();
         }
-        Assert.assertEquals(2, queue.size());
-        Assert.assertTrue(queue.contains(3));
-        Assert.assertFalse(queue.contains(1));
-        Assert.assertTrue(queue.contains(2));
-
+        Assert.assertEquals(2, queueInt.size());
+        Assert.assertTrue(queueInt.contains(3));
+        Assert.assertFalse(queueInt.contains(1));
+        Assert.assertTrue(queueInt.contains(2));
 
 
         try {
-            assertEquals(2,queue.dequeue());
+            assertEquals((Integer) 2, queueInt.dequeue());
         } catch (EmptyQueueException e) {
-            throw new RuntimeException(e);
+            fail();
         }
-        Assert.assertEquals(1, queue.size());
-        Assert.assertFalse(queue.contains(2));
-        Assert.assertFalse(queue.contains(1));
-        Assert.assertTrue(queue.contains(3));
+        Assert.assertEquals(1, queueInt.size());
+        Assert.assertFalse(queueInt.contains(2));
+        Assert.assertFalse(queueInt.contains(1));
+        Assert.assertTrue(queueInt.contains(3));
 
 
         // Remove value 3 (last element)
         try {
-            assertEquals(3,queue.dequeue());
+            assertEquals((Integer) 3, queueInt.dequeue());
         } catch (EmptyQueueException e) {
-            throw new RuntimeException(e);
+            fail();
         }
-        Assert.assertEquals(0, queue.size());
-        Assert.assertFalse(queue.contains(2));
-        Assert.assertFalse(queue.contains(3));
-        Assert.assertFalse(queue.contains(1));
+        Assert.assertEquals(0, queueInt.size());
+        Assert.assertFalse(queueInt.contains(2));
+        Assert.assertFalse(queueInt.contains(3));
+        Assert.assertFalse(queueInt.contains(1));
 
 
     }
 
     @Test
-    void contains() {
-        queue.enqueue("hola");
-        assertTrue(queue.contains("hola"));
+    public void contains() {
+        queueString.enqueue("hola");
+        assertTrue(queueString.contains("hola"));
     }
 
     @Test
-    void size() {
-        assertEquals(0, queue.size());
-        queue.enqueue("hola");
-        assertEquals(1, queue.size());
+    public void size() {
+        assertEquals(0, queueString.size());
+        queueString.enqueue("hola");
+        assertEquals(1, queueString.size());
     }
 
     @Test
-    void get() {
-        queue.enqueue("hola");
-        queue.enqueue("mundo");
+    public void get() {
+        queueString.enqueue("hola");
+        queueString.enqueue("mundo");
         try {
-            assertEquals("mundo", queue.get(0));
+            assertEquals("mundo", queueString.get(0));
         } catch (DatosIncorrectos e) {
             throw new RuntimeException(e);
         }
