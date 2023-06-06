@@ -1,5 +1,6 @@
 package uy.edu.um.prog2.adt;
 
+import uy.edu.um.prog2.adt.exceptions.DatosIncorrectos;
 import uy.edu.um.prog2.adt.exceptions.EmptyQueueException;
 
 public interface Queue<T> {
@@ -11,5 +12,5 @@ public interface Queue<T> {
 
     int size();
 
-    T get(int position);
+    T get(int position) throws DatosIncorrectos;
 }

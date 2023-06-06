@@ -8,9 +8,10 @@ public interface Stack<T> {
 
     T pop() throws EmptyStackException;
 
-    T peek();
+    T peek() throws EmptyStackException;
 
     int size();
 
     T get(int position) throws DatosIncorrectos;
+    boolean contains(T value);
 }

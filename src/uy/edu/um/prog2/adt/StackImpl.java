@@ -11,6 +11,7 @@ public class StackImpl<T> implements Stack<T> {
     public StackImpl() {
         this.first = null;
         this.size = 0;
+        this.last= null;
     }
 
     @Override
@@ -23,6 +24,7 @@ public class StackImpl<T> implements Stack<T> {
             if (this.first == null) { // si la lista es vacia
 
                 this.first = newNode;
+                this.last = newNode;
 
 
             } else { // en caso de no ser vacia se agrega al final
@@ -31,6 +33,7 @@ public class StackImpl<T> implements Stack<T> {
                     curr = curr.getNext();
                 }
                 curr.setNext(newNode);
+                this.last= newNode;
             }
             this.size++;
 
@@ -42,70 +45,51 @@ public class StackImpl<T> implements Stack<T> {
 
     @Override
     public T pop() throws EmptyStackException {
-        if (this.last == null) {
-            throw new EmptyStackException();
-        }
-        Node<T> beforeSearchValue = null;
-        Node<T> searchValue = this.first;
 
-        T valueToRemove = null;
-        if (this.size == 1) {
-            first = null;
-            last = null;
-        } else {
-
-
-            valueToRemove = this.last.getValue();
-
-            // Busco el elemento a eliminar teniendo en cuenta mantener una referencia al elemento anterior
-            while (searchValue != null && !searchValue.getValue().equals(valueToRemove)) {
-
-                beforeSearchValue = searchValue;
-                searchValue = searchValue.getNext();
-
+            if (this.last == null) {
+                throw new EmptyStackException();
             }
 
-            if (searchValue != null) { // si encontre el elemento a eliminar
+            T valueToRemove = this.last.getValue();
 
-                //Verifico si es el primer valor (caso borde) y no es el último
-                if (searchValue == this.first && searchValue.getNext()!=null) {
-
-                    Node<T> aux = this.first;
-                    this.first = this.first.getNext(); // salteo el primero
-
-                    aux.setNext(null); // quito referencia del elemento eliminado al siguiente.
-
-                    // Verifico si es el primer valor (caso borde) y no el primero
-                } else if (searchValue.getNext() == null && searchValue != this.first) {
-
-                    beforeSearchValue.setNext(null);
-
-
-                    // Sí es el primer valor y el último (lista de un solo valor)
-                } else if (searchValue.getNext() == null && searchValue == this.first) {
-
-                    this.first = null;
-
-                } else { // resto de los casos
-
-                    beforeSearchValue.setNext(searchValue.getNext());
-                    searchValue.setNext(null);
+            if (this.first == this.last) {
+                // Si la pila solo contiene un elemento, vaciamos la pila
+                this.first = null;
+                this.last = null;
+            } else {
+                // Buscamos el nodo anterior al último nodo
+                Node<T> prevNode = this.first;
+                while (prevNode.getNext() != this.last) {
+                    prevNode = prevNode.getNext();
                 }
 
-            } else {
-                // Si no es encuentra el valor a eliminar no se realiza nada
+                // Eliminamos el último nodo
+                prevNode.setNext(null);
+                this.last = prevNode;
             }
 
-
+            this.size--;
+            return valueToRemove;
         }
-        this.size--;
-        return valueToRemove;
 
+
+        @Override
+    public boolean contains(T value) {
+        boolean contains = false;
+        Node<T> aux = this.first;
+
+        while (aux != null) {
+            if (aux.getValue().equals(value)) {
+                contains= true;
+                break;
+            }
+            aux = aux.getNext();
+        }
+        return contains;
     }
 
-
     @Override
-    public T peek() {
+    public T peek(){
         T valueToReturn = null;
 
         if (this.last != null) {

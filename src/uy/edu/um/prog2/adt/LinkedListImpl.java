@@ -69,11 +69,6 @@ public class LinkedListImpl<T> implements LinkedList<T> {
             }
             aux = aux.getNext();
         }
-
-
-
-
-
         return contains;
     }
 
@@ -122,7 +117,7 @@ public class LinkedListImpl<T> implements LinkedList<T> {
             // Si no es encuentra el valor a eliminar no se realiza nada
         }
 
-
+        size--;
     }
 
     @Override
