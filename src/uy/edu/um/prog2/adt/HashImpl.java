@@ -1,7 +1,7 @@
 package uy.edu.um.prog2.adt;
 
 import uy.edu.um.prog2.adt.exceptions.EmptyHashException;
-import uy.edu.um.prog2.adt.exceptions.EmptyHeapException;
+
 
 public class HashImpl<K extends Comparable<K>, T> implements Hash<K, T> {
     private static final int INITIAL_CAPACITY = 10;
